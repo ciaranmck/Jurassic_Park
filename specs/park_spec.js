@@ -10,7 +10,8 @@ describe("Park", function() {
   beforeEach(function() {
     dinosaur1 = new Dinosaur("Velociraptor", 2);
     dinosaur2 = new Dinosaur("Gallimimus", 10);
-    dinosaur1 = new Dinosaur("Tyrannosaurus Rex", 1);
+    dinosaur3 = new Dinosaur("Tyrannosaurus Rex", 1);
+    dinosaur4 = new Dinosaur("Velociraptor", 1);
     park = new Park("Jurassic Park");
   });
 
@@ -23,8 +24,17 @@ describe("Park", function() {
   })
 
   it("can add dinosaur to enclosure", function() {
-    park.addDinosaur("Velociraptor");
+    park.addDinosaur(dinosaur1);
     assert.strictEqual(1, park.enclosure.length);
+  })
+
+  it("can remove dinosaur's by type", function() {
+    park.addDinosaur(dinosaur1);
+    park.addDinosaur(dinosaur2);
+    park.addDinosaur(dinosaur4);
+    park.addDinosaur(dinosaur3);
+    park.removeDinoByType("Velociraptor");
+    assert.strictEqual(2, park.enclosure.length);
   })
 
 });
